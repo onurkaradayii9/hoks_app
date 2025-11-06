@@ -21,17 +21,20 @@ jobs:
         with:
           flutter-version: '3.24.3'
 
-      - name: Install dependencies
-        working-directory: hok_regl_full_ready/hok_regl_android_fixed
+      - name: Go to project directory
+        run: cd hok_regl_full_ready/hok_regl_android_fixed && ls -al
+
+      - name: Get dependencies
         run: flutter pub get
+        working-directory: hok_regl_full_ready/hok_regl_android_fixed
 
       - name: Analyze project
-        working-directory: hok_regl_full_ready/hok_regl_android_fixed
         run: flutter analyze
+        working-directory: hok_regl_full_ready/hok_regl_android_fixed
 
       - name: Build release APK
-        working-directory: hok_regl_full_ready/hok_regl_android_fixed
         run: flutter build apk --release
+        working-directory: hok_regl_full_ready/hok_regl_android_fixed
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
