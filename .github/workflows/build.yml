@@ -21,14 +21,20 @@ jobs:
         with:
           flutter-version: '3.24.3'
 
+      - name: Verify pubspec exists
+        run: ls -al && cat pubspec.yaml | head -n 10
+
       - name: Install dependencies
         run: flutter pub get
+        working-directory: .
 
       - name: Analyze project
         run: flutter analyze
+        working-directory: .
 
       - name: Build release APK
         run: flutter build apk --release
+        working-directory: .
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
