@@ -1,0 +1,2 @@
+#!/bin/sh
+echo "This is a placeholder gradlew script. Use gradle wrapper in your environment or run './gradlew' after setting executable permissions."
