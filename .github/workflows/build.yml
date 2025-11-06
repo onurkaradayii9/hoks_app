@@ -21,23 +21,23 @@ jobs:
         with:
           flutter-version: '3.24.3'
 
-      - name: Verify pubspec exists
-        run: ls -al && cat pubspec.yaml | head -n 10
+      - name: Go to project directory
+        run: cd hok_regl_full_ready/hok_regl_android_fixed && ls -al
 
-      - name: Install dependencies
+      - name: Get dependencies
         run: flutter pub get
-        working-directory: .
+        working-directory: hok_regl_full_ready/hok_regl_android_fixed
 
       - name: Analyze project
         run: flutter analyze
-        working-directory: .
+        working-directory: hok_regl_full_ready/hok_regl_android_fixed
 
       - name: Build release APK
         run: flutter build apk --release
-        working-directory: .
+        working-directory: hok_regl_full_ready/hok_regl_android_fixed
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: app-release-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
+          path: hok_regl_full_ready/hok_regl_android_fixed/build/app/outputs/flutter-apk/app-release.apk
