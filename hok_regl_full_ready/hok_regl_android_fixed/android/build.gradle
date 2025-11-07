@@ -1,4 +1,5 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+
 buildscript {
     repositories {
         google()
@@ -9,7 +10,6 @@ buildscript {
     }
 }
 
-// Gradle 8 ve sonrası için allprojects kaldırıldı, ama boş bırakabilirsin.
 allprojects {
     repositories {
         google()
