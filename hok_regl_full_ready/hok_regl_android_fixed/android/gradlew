@@ -1,2 +1,8 @@
-#!/bin/sh
-echo "This is a placeholder gradlew script. Use gradle wrapper in your environment or run './gradlew' after setting executable permissions."
+#!/usr/bin/env sh
+
+APP_HOME=$(cd "$(dirname "$0")"; pwd)
+DEFAULT_JVM_OPTS=""
+APP_NAME="Gradle"
+APP_BASE_NAME=$(basename "$0")
+
+exec java $DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS -cp "$APP_HOME/gradle/wrapper/gradle-wrapper.jar" org.gradle.wrapper.GradleWrapperMain "$@"
