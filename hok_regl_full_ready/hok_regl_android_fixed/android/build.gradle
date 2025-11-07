@@ -5,26 +5,14 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        // Flutter 3.7.x ile uyumlu Gradle Plugin sürümü
-        classpath 'com.android.tools.build:gradle:7.2.2'
+        classpath 'com.android.tools.build:gradle:8.1.1'
     }
 }
 
+// Gradle 8 ve sonrası için allprojects kaldırıldı, ama boş bırakabilirsin.
 allprojects {
     repositories {
         google()
         mavenCentral()
     }
-}
-
-rootProject.buildDir = '../build'
-subprojects {
-    project.buildDir = "${rootProject.buildDir}/${project.name}"
-}
-subprojects {
-    project.evaluationDependsOn(':app')
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
 }
