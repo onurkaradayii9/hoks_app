@@ -1,18 +1,10 @@
-def localProperties = new Properties()
-def localPropertiesFile = rootProject.file('local.properties')
-if (localPropertiesFile.exists()) {
-    localPropertiesFile.withReader('UTF-8') { reader -> localProperties.load(reader) }
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
 }
-
-def flutterSdkPath = localProperties.getProperty('flutter.sdk')
-if (flutterSdkPath == null) {
-    throw new GradleException("Flutter SDK not found. Define flutter.sdk in local.properties.")
-}
-
-apply plugin: 'com.android.application'
-apply from: "$flutterSdkPath/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
+    namespace "com.example.hok_regl"   // 📛 manifest’teki package ile aynı olmalı
     compileSdkVersion 33
 
     defaultConfig {
@@ -25,19 +17,26 @@ android {
 
     buildTypes {
         release {
-            // Signing configuration can be provided via key.properties or CI secrets
+            minifyEnabled false
+            shrinkResources false
             signingConfig signingConfigs.debug
-            // If you have shrinker/proguard rules, configure here
-            // minifyEnabled false
         }
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.10"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0"
+    implementation "androidx.core:core-ktx:1.10.1"
+    implementation "androidx.appcompat:appcompat:1.6.1"
+    implementation "com.google.android.material:material:1.9.0"
+    implementation "androidx.constraintlayout:constraintlayout:2.1.4"
 }
