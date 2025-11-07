@@ -1,27 +1,13 @@
-pluginManagement {
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.1.1'
     }
 }
 
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
+// Yeni Gradle sürümlerinde (8.x) bu kısım settings.gradle’da tanımlı
+// Bu yüzden burada repositories kısmını kaldırdık.
+
+allprojects {
+    // Boş bırak ya da sadece yorum satırı bırak
 }
-
-rootProject.name = "hok_regl"
-include(":app")
-
-// Flutter SDK yolunu bul
-def flutterSdkPath = System.getenv("FLUTTER_HOME")
-if (flutterSdkPath == null || flutterSdkPath.isEmpty()) {
-    // GitHub Actions ortamında Flutter bu klasörde bulunur
-    flutterSdkPath = "/opt/hostedtoolcache/flutter/stable-3.7.12-x64"
-}
-
-apply from: "$flutterSdkPath/packages/flutter_tools/gradle/app_plugin_loader.gradle"
