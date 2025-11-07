@@ -1,2 +1,28 @@
-include ':app'
-rootProject.name = 'hok_regl'
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.name = "hok_regl"
+
+include(":app")
+
+# Flutter SDK yolunu otomatik bul
+def flutterRoot = System.getenv("FLUTTER_HOME")
+if (flutterRoot == null) {
+    flutterRoot = "${System.getenv("HOME")}/.flutter"
+}
+
+def flutterProjectRoot = rootDir.parentFile.toPath().resolve("..").toFile()
+apply from: "$flutterProjectRoot/packages/flutter_tools/gradle/app_plugin_loader.gradle"
