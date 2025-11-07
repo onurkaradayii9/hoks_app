@@ -2,9 +2,7 @@
     package="com.example.hok_regl">
 
     <application
-        android:name="io.flutter.app.FlutterApplication"
-        android:label="HOK Regl"
-        android:icon="@mipmap/ic_launcher">
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
