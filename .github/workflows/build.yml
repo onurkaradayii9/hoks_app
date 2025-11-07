@@ -1,8 +1,12 @@
-name: Build Flutter APK
+name: Flutter Build
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
@@ -10,23 +14,27 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Set up Flutter 1.22.6 (supports v1 embedding)
+      - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '1.22.6'
+          flutter-version: '3.7.12'
 
       - name: Get dependencies
+        working-directory: hok_regl_full_ready/hok_regl_android_fixed
         run: flutter pub get
-        working-directory: hok_regl_full_ready/hok_regl_android_fixed
 
-      - name: Build release APK
+      - name: Analyze project source
+        working-directory: hok_regl_full_ready/hok_regl_android_fixed
+        run: flutter analyze || true   # analiz hataları build'i durdurmaz
+
+      - name: Build APK (release)
+        working-directory: hok_regl_full_ready/hok_regl_android_fixed
         run: flutter build apk --release
-        working-directory: hok_regl_full_ready/hok_regl_android_fixed
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v3
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
         with:
-          name: release-apk
+          name: app-release-apk
           path: hok_regl_full_ready/hok_regl_android_fixed/build/app/outputs/flutter-apk/app-release.apk
