@@ -27,7 +27,7 @@ jobs:
 
       - name: Analyze project source
         working-directory: hok_regl_full_ready/hok_regl_android_fixed
-        run: flutter analyze || true   # analiz hataları build'i durdurmaz
+        run: flutter analyze || true  # analiz hataları build'i durdurmaz
 
       - name: Build APK (release)
         working-directory: hok_regl_full_ready/hok_regl_android_fixed
